@@ -1,0 +1,10 @@
+import java.util.Scanner;
+
+public class Sheduling {
+	Scanner sc= new Scanner(System.in);
+	public void fcfs(){	
+		System.out.println("Enter Burst time");
+		Process p_fcfs=new Process[];
+		System.out.println("Enter Burst time");
+	}
+}

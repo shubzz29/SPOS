@@ -1,0 +1,81 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Sheduling {
+	Scanner sc= new Scanner(System.in);
+	public void fcfs(){	
+		System.out.println("Enter no. of process");
+		int p=sc.nextInt();
+		System.out.println(p);
+		Process[] p_fcfs=new Process[p];
+		for(int i=0;i<p;i++) {
+			p_fcfs[i]=new Process();
+		}
+		System.out.println("Enter Burst time");
+		for(int i=0;i<p;i++) {
+			p_fcfs[i].bt=sc.nextInt();
+		}
+		System.out.println("Enter arrival time");
+		for(int i=0;i<p;i++) {
+			p_fcfs[i].at=sc.nextInt();
+		}
+		Arrays.sort(p_fcfs);
+		//calculate wt 
+		p_fcfs[0].wt=0;
+		for(int i=1;i<p;i++) {
+			p_fcfs[i].wt=p_fcfs[i-1].bt+p_fcfs[i-1].wt-p_fcfs[i].at;
+		}
+		for(int i=1;i<p;i++) {
+			p_fcfs[i].tat=p_fcfs[i].bt+p_fcfs[i].wt;
+		}
+		float avg_wt=0,avg_tat=0;
+		for(int i=1;i<p;i++) {
+			avg_wt +=p_fcfs[i].wt;
+			avg_tat +=p_fcfs[i].tat;
+		}
+		avg_wt /=p;
+		avg_tat /=p;
+		System.out.println("sorted array");
+		for(int i=0;i<p;i++) {
+			System.out.println(p_fcfs[i].at+" ");
+		}
+		
+		System.out.println("Average Waiting time:"+avg_wt+"Average Turn Around Time"+avg_tat);
+	}
+	public void sjf() {
+		System.out.println("Enter no. of process");
+		int p=sc.nextInt();
+		System.out.println(p);
+		Process[] p_sjf=new Process[p];
+		for(int i=0;i<p;i++) {
+			p_sjf[i]=new Process();
+		}
+		System.out.println("Enter Burst time");
+		for(int i=0;i<p;i++) {
+			p_sjf[i].bt=sc.nextInt();
+		}
+		for(int i=0;i<p;i++) {
+			for(int j=0;j<0;i++) {
+				if(p_sjf[i].bt>p_sjf[j].bt)
+					p_sjf[i].wt +=p_sjf[j].bt;
+			}
+		}
+		for(int i=0;i<p;i++) {
+			p_sjf[i].tat=p_sjf[i].bt+p_sjf[i].wt;
+		}
+		float avg_wt=0,avg_tat=0;
+		for(int i=0;i<p;i++)
+		{
+			avg_wt += p_sjf[i].wt;
+			avg_tat += p_sjf[i].tat;
+		}
+		avg_wt /= n;
+		avg_tat /= n;
+	}
+	public static void main(String[] args) {
+		Sheduling obj=new Sheduling();
+		obj.fcfs();
+		obj.sjf();
+	}
+}
+

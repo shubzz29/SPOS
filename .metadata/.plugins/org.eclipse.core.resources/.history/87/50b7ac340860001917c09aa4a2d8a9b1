@@ -1,0 +1,38 @@
+import java.util.Scanner;
+
+public class Sheduling {
+	Scanner sc= new Scanner(System.in);
+	public void fcfs(){	
+		System.out.println("Enter no. of process");
+		int p=sc.nextInt();
+		Process[] p_fcfs=new Process[p];
+		System.out.println("Enter Burst time");
+		for(int i=0;i<p;i++) {
+			p_fcfs[i].bt=sc.nextInt();
+		}
+		System.out.println("Enter Arrival time");
+		for(int i=0;i<p;i++) {
+			p_fcfs[i].at=sc.nextInt();
+		}
+		//calculate wt 
+		p_fcfs[0].wt=0;
+		for(int i=1;i<p;i++) {
+			p_fcfs[i].wt=p_fcfs[i-1].bt+p_fcfs[i-1].wt;
+		}
+		for(int i=1;i<p;i++) {
+			p_fcfs[i].tat=p_fcfs[i].bt+p_fcfs[i].wt;
+		}
+		float avg_wt=0,avg_tat=0;
+		for(int i=1;i<p;i++) {
+			avg_wt +=p_fcfs[i].wt;
+			avg_tat +=p_fcfs[i].tat;
+		}
+		avg_wt /=p;
+		avg_tat /=p;
+	}
+	public static void main() {
+		Sheduling obj=new Sheduling();
+		obj.fcfs();
+	}
+}
+

@@ -1,0 +1,8 @@
+import java.util.Scanner;
+
+public class Sheduling {
+	Scanner sc= new Scanner(System.in);
+	public void fcfs(){	
+	
+	}
+}

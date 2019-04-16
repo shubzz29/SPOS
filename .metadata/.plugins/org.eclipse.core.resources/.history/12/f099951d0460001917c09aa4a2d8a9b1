@@ -1,0 +1,9 @@
+
+public class Process {
+	public int pid;
+	public int wt;
+	public int tat;
+	public int at;
+	public int rt;
+	
+}
